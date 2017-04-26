@@ -24,5 +24,7 @@ def getCompleteColumns(df, threshold):
     r = getIncompleteRatios(df)
     return list(r[r[0] < threshold].transpose().columns)
 
-def removeIncompleteColumns(df):
-    df.select(getCompleteColumns)
+# This function removes the columns which have more than
+# a certain ratio of null values. The ratio is given by parameter threshold 
+def removeIncompleteColumns(df, threshold):
+    return df.select(getCompleteColumns(df, threshold))
